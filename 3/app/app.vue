@@ -7,39 +7,30 @@
 <center><img src="/img/flip-flop.gif" ref="myLoader"/></center>
 <div id="hello">
 </div>
-<li v-for="card in cardt">
+<li v-for="card in items">
   {{ card }}
 </li>
-<!--li v-for="n in 10">
-  {{ n }}
-</li-->
 <div id="vue" v-html="helloElement"></div>
 </template>
 <script language="javascript">
   import axios from 'axios'
- // let a = this.$axios.get('https://jsonplaceholder.typicode.com/users');//.then(data=>{console.log(data)});
-  // Создаем экземпляр Axios с базовым URL
-//let cardt = CardtFunc();
-//const peoples = document.getElementById("hello").innerText;
-function get_peoples(myResponse){
-   // myResponse.innerText = "hhhhhhhhhhhhh";
-    return 1;
-}
-   //cardt = new Array();
+
 export default {
-  data() {
-    return {
-  //    cardt: ,
-      peoples: "",
-    };
-  },
+    data: () => {
+      return {
+        items: [],
+        is_show: false
+      };
+    },
     
     
-  mounted() {
+  async mounted() {
+   // const items = await this.fetchPeoples();
+    const itemsD = await this.fetchPeoples();
+    const items = itemsD.data;
     function give_cards(){
       return
     }
-    //console.log(cardt[0]);
     function draw_cards(cards){
         cards.forEach(function(entry) {    
             document.getElementById("hello").innerHTML+=("<div class='border'><span>" + entry.name + "</span><br/><span>" + entry.username + "</span><br/><span>" + entry.email + "</span><div>");
@@ -56,11 +47,16 @@ export default {
     
     let cards = Array();
     let u = api.get().then(value => {cards = value.data; draw_cards(cards);});  
-    console.log("=======");  
-    console.log(u); 
+
         
   }, 
   methods: {
+    async fetchPeoples() {
+        const items = await axios.get(
+          'https://jsonplaceholder.typicode.com/users',
+        );
+        return items;
+      }
 
   },
 

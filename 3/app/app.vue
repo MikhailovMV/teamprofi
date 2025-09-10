@@ -7,7 +7,8 @@
 <center><img src="/img/flip-flop.gif" ref="myLoader"/></center>
 <div id="hello">
 </div>
-<li v-for="card in items">
+<li v-for="(card, index) in items"
+        :key="index">
   {{ card }}
 </li>
 <div id="vue" v-html="helloElement"></div>
@@ -25,9 +26,9 @@ export default {
     
     
   async mounted() {
-   // const items = await this.fetchPeoples();
     const itemsD = await this.fetchPeoples();
     const items = itemsD.data;
+    console.log(items);
     function give_cards(){
       return
     }

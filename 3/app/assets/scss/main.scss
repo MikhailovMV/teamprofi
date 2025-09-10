@@ -1,6 +1,7 @@
 $blue: #3bbfce;
 $margin: 25px;
 $padding: 15px;
+$font-family: Tahoma;
 
 .content-navigation {
   border-color: $blue;
@@ -16,3 +17,20 @@ $padding: 15px;
 
 h1 {font-family: Tahoma;}
 div.border {border: 2px solid blue; display: inline-block; margin: $margin; padding: $padding; width: 250px;}
+div span .author, div.border span { font-family: $font-family; }
+div.border:hover { border-color: $blue }
+
+div.button {
+background-color: #3498db;
+color: white;
+padding: 10px 20px;
+border-radius: 4px;
+transition: all 1.3s ease;
+}
+
+div.button:hover {
+background-color: #2980b9;
+/*transform: translateY(-3px);*/
+transform: rotate(60deg);
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}

@@ -7,22 +7,23 @@
 <center><img src="/img/flip-flop.gif" ref="myLoader"/></center>
 <div id="hello">
 </div>
-<li v-for="(card, index) in items"
-        :key="index">
-  {{ card.name }}<br/>
-  {{ card.username }}<br/>
-  {{ card.email }}<br/>
-</li>
+<div v-for="(item, index) in items" :key="index" id="author">
+<span>
+  <span class="author">{{ item.name }} </span>
+  <span class="author">{{ item.username }} </span>
+  <span class="author">{{ item.email }} </span>
+</span>
+</div>
 <div id="vue" v-html="helloElement"></div>
 </template>
-<script language="javascript">
+<script>
+  import { mapGetters } from 'vuex';
   import axios from 'axios'
 
 export default {
     data: () => {
       return {
-        items: [],
-        is_show: false
+        items: [{name: "Mikhail"}, {username: "Mikhailov"}, {email: "mikhailoff@inbox.ru"}]
       };
     },
     
@@ -31,10 +32,10 @@ export default {
     const itemsD = await this.fetchPeoples();
     const items = itemsD.data;
     console.log(items);
-    
+
     function draw_cards(cards){
         cards.forEach(function(entry) {    
-            document.getElementById("hello").innerHTML+=("<div class='border'><span>" + entry.name + "</span><br/><span>" + entry.username + "</span><br/><span>" + entry.email + "</span><div>");
+            document.getElementById("hello").innerHTML+=("<div class='border button'><span>" + entry.name + "</span><br/><span>" + entry.username + "</span><br/><span>" + entry.email + "</span><div>");
             console.log(entry.name + entry.username + entry.email);
 
         });

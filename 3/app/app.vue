@@ -9,7 +9,9 @@
 </div>
 <li v-for="(card, index) in items"
         :key="index">
-  {{ card }}
+  {{ card.name }}<br/>
+  {{ card.username }}<br/>
+  {{ card.email }}<br/>
 </li>
 <div id="vue" v-html="helloElement"></div>
 </template>
@@ -29,9 +31,7 @@ export default {
     const itemsD = await this.fetchPeoples();
     const items = itemsD.data;
     console.log(items);
-    function give_cards(){
-      return
-    }
+    
     function draw_cards(cards){
         cards.forEach(function(entry) {    
             document.getElementById("hello").innerHTML+=("<div class='border'><span>" + entry.name + "</span><br/><span>" + entry.username + "</span><br/><span>" + entry.email + "</span><div>");
